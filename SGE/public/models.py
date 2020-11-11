@@ -3,14 +3,17 @@ from django.contrib.postgres.fields import ArrayField
 
 # Create your models here.
 
-class Eventos(models.Model):
+class Evento(models.Model):
     id = models.IntegerField(primary_key = True)
     nombre = models.CharField(max_length = 80)
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_final = models.DateField(auto_now=False, auto_now_add=False) #modificacion
-    estado = models.BooleanField() #modificacion
+    estado = models.BooleanField(default=True) #modificacion
     
-"""class Subeventos(models.Model):
+    def __str__(self):
+        return self.nombre
+    
+"""class SubEvento(models.Model):
     id = models.IntegerField(primary_key = True)
     nombre = models.CharField(max_length = 80)
     ambiente = models.CharField(max_length = 80)
@@ -18,7 +21,7 @@ class Eventos(models.Model):
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_final =  models.DateField(auto_now=False, auto_now_add=False)
     id_comite = models.ForeignKey(Comite, on_delete=models.CASCADE)
-    id_evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
     
 class Actividades(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -27,21 +30,21 @@ class Actividades(models.Model):
     nombre = models.CharField(max_length = 80)
     hora_final = models.DateTimeField(auto_now=False, auto_now_add=False)
     fecha =  models.DateField(auto_now=False, auto_now_add=False)
-    id_sub_evento = models.ForeignKey(Subeventos, on_delete=models.CASCADE)
+    id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)
     
 class Ambientes(models.Model):
     id = models.IntegerField(primary_key = True)
     nombre = models.CharField(max_length = 80)
     lugar = models.CharField(max_length = 80)
     cupos = models.IntegerField(blank=True, null=True)
-    id_sub_evento = models.ForeignKey(Subeventos, on_delete=models.CASCADE)
+    id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)
     
 class Catalogos(models.Model):
     id = models.IntegerField(primary_key = True)
     nombre = models.CharField(max_length = 80)
     materiales = ArrayField(models.CharField(max_length = 80))
     cantidad = ArrayField(models.IntegerField(blank=True, null=True))
-    id_sub_evento = models.ForeignKey(Subeventos, on_delete=models.CASCADE)"""
+    id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)"""
 
 class Paquetes(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -49,7 +52,7 @@ class Paquetes(models.Model):
     promociones = models.CharField(max_length = 80)#modificacion
     categoria = models.CharField(max_length = 80)#modificacion
     precio = models.FloatField()#modificacion
-    id_evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
 class Asistentes(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -91,7 +94,7 @@ class Ingresos(models.Model):
     nro_cuenta = models.IntegerField(blank=True, null=True)
     cantidad = models.IntegerField(blank=True, null=True)
     estado_pago = models.CharField(max_length = 80)
-    id_evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
     
 class Egresos(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -100,19 +103,19 @@ class Egresos(models.Model):
     estado_pago = models.CharField(max_length = 80)
     encargado = models.CharField(max_length = 80)
     descripcion = models.CharField(max_length = 120)
-    id_evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
 """class Inscripciones(models.Model):
     id = models.IntegerField(primary_key = True)
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_cierre = models.DateField(auto_now=False, auto_now_add=False)
-    id_evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
 class Preinscripciones(models.Model):
     id = models.IntegerField(primary_key = True)
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_cierre = models.DateField(auto_now=False, auto_now_add=False)
-    id_evento = models.ForeignKey(Eventos, on_delete=models.CASCADE)
+    id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
 
 class Asistencias(models.Model):
     id = models.IntegerField(primary_key = True)
@@ -120,7 +123,7 @@ class Asistencias(models.Model):
     apellido = models.CharField(max_length = 80)
     codigo = models.IntegerField(blank=True, null=True)
     asistio = models.BooleanField()
-    id_sub_evento = models.ForeignKey(Subeventos, on_delete=models.CASCADE)
+    id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)
 
 class Comite(models.Model):
     id = models.IntegerField(primary_key = True)
