@@ -55,7 +55,7 @@ ROOT_URLCONF = 'SGE.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,7 +79,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'SGE',
         'USER': 'postgres',
-        'PASSWORD': ' ',#AQUI VA TU CONTRASEÑA DE POSTGRESQL
+        'PASSWORD': '',#AQUI VA TU CONTRASEÑA DE POSTGRESQL
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }

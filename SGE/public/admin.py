@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Evento
+from .models import Paquetes
 
 # Register your models here.
 
