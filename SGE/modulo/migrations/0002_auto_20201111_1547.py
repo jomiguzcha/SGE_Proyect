@@ -7,7 +7,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('public', '0001_initial'),
+        ('modulo', '0001_initial'),
     ]
 
     operations = [
@@ -24,17 +24,17 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='egresos',
             name='id_evento',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.evento'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.evento'),
         ),
         migrations.AlterField(
             model_name='ingresos',
             name='id_evento',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.evento'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.evento'),
         ),
         migrations.AlterField(
             model_name='paquetes',
             name='id_evento',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.evento'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.evento'),
         ),
         migrations.DeleteModel(
             name='Eventos',

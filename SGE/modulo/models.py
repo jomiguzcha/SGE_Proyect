@@ -16,26 +16,26 @@ class Evento(models.Model):
         return self.nombre
         
 #Diagrama de Clases DC012
-#<<Entidad>> Ambientes    
-class Ambientes(models.Model):
+#<<Entidad>> Ambiente    
+class Ambiente(models.Model):
     id = models.IntegerField(primary_key = True)
     nombre = models.CharField(max_length = 80)
     lugar = models.CharField(max_length = 80)
     cupos = models.IntegerField(blank=True, null=True)
-    #id_sub_evento = models.ForeignKey(SubEventos, on_delete=models.CASCADE)
+    #id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.nombre
         
 #Diagrama de Clases DC007
 #<<Entidad>> Sub_evento
-class SubEventos(models.Model):
+class SubEvento(models.Model):
     id = models.IntegerField(primary_key = True)
     nombre = models.CharField(max_length = 80)
     estado =  models.BooleanField()
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_final =  models.DateField(auto_now=False, auto_now_add=False)
-    ambiente = models.ForeignKey(Ambientes, on_delete=models.CASCADE)
+    ambiente = models.ForeignKey(Ambiente, on_delete=models.CASCADE)
     id_evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
     #id_comite = models.ForeignKey(Comite, on_delete=models.CASCADE)
     
@@ -43,15 +43,15 @@ class SubEventos(models.Model):
         return self.nombre
 
 #Diagrama de Clases DC016
-#<<Entidad>> Actividades    
-class Actividades(models.Model):
+#<<Entidad>> Actividade    
+class Actividade(models.Model):
     id = models.IntegerField(primary_key = True)
     hora_inicio = models.DateTimeField(auto_now=False, auto_now_add=False)
     ponente = models.CharField(max_length = 80)
     nombre = models.CharField(max_length = 80)
     hora_final = models.DateTimeField(auto_now=False, auto_now_add=False)
     fecha =  models.DateField(auto_now=False, auto_now_add=False)
-    id_sub_evento = models.ForeignKey(SubEventos, on_delete=models.CASCADE)
+    id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.nombre

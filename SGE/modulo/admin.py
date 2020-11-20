@@ -1,8 +1,8 @@
 from django.contrib import admin
 from .models import Evento
-from .models import SubEventos
-from .models import Actividades
-from .models import Ambientes
+from .models import SubEvento
+from .models import Actividade
+from .models import Ambiente
 from .models import Paquete
 
 # Register your models here.
@@ -35,7 +35,7 @@ class PaquetesAdmin(admin.ModelAdmin):
     list_display = ("evento","categorizacion", "promociones","categoria","precio")
 
 admin.site.register(Evento,EventosAdmin)
-admin.site.register(SubEventos,SubeventosAdmin)
-admin.site.register(Actividades,ActividadesAdmin)
-admin.site.register(Ambientes,AmbientesAdmin)
+admin.site.register(SubEvento,SubeventosAdmin)
+admin.site.register(Actividade,ActividadesAdmin)
+admin.site.register(Ambiente,AmbientesAdmin)
 admin.site.register(Paquete,PaquetesAdmin)

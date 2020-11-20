@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
                 ('codigo', models.IntegerField(blank=True, null=True)),
                 ('correo', models.CharField(max_length=80)),
                 ('paquete', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=80), size=None)),
-                ('id_asistente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.asistentes')),
+                ('id_asistente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.asistentes')),
             ],
         ),
         migrations.CreateModel(
@@ -53,7 +53,7 @@ class Migration(migrations.Migration):
                 ('promociones', models.CharField(max_length=80)),
                 ('categoria', models.CharField(max_length=80)),
                 ('precio', models.FloatField()),
-                ('id_evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.eventos')),
+                ('id_evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.eventos')),
             ],
         ),
         migrations.CreateModel(
@@ -75,7 +75,7 @@ class Migration(migrations.Migration):
                 ('cantidad', models.IntegerField(blank=True, null=True)),
                 ('nro_cuenta', models.IntegerField(blank=True, null=True)),
                 ('fecha', models.DateTimeField()),
-                ('id_inscrito', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.inscritos')),
+                ('id_inscrito', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.inscritos')),
             ],
         ),
         migrations.CreateModel(
@@ -87,14 +87,14 @@ class Migration(migrations.Migration):
                 ('codigo', models.IntegerField(blank=True, null=True)),
                 ('correo', models.CharField(max_length=80)),
                 ('paquete', django.contrib.postgres.fields.ArrayField(base_field=models.CharField(max_length=80), size=None)),
-                ('id_asistente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.asistentes')),
-                ('id_paquete', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.paquetes')),
+                ('id_asistente', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.asistentes')),
+                ('id_paquete', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.paquetes')),
             ],
         ),
         migrations.AddField(
             model_name='inscritos',
             name='id_paquete',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.paquetes'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.paquetes'),
         ),
         migrations.CreateModel(
             name='Ingresos',
@@ -103,7 +103,7 @@ class Migration(migrations.Migration):
                 ('nro_cuenta', models.IntegerField(blank=True, null=True)),
                 ('cantidad', models.IntegerField(blank=True, null=True)),
                 ('estado_pago', models.CharField(max_length=80)),
-                ('id_evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.eventos')),
+                ('id_evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.eventos')),
             ],
         ),
         migrations.CreateModel(
@@ -115,7 +115,7 @@ class Migration(migrations.Migration):
                 ('estado_pago', models.CharField(max_length=80)),
                 ('encargado', models.CharField(max_length=80)),
                 ('descripcion', models.CharField(max_length=120)),
-                ('id_evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.eventos')),
+                ('id_evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.eventos')),
             ],
         ),
     ]

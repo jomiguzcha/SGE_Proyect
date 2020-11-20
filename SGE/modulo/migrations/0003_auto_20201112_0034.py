@@ -8,7 +8,7 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('public', '0002_auto_20201111_1547'),
+        ('modulo', '0002_auto_20201111_1547'),
     ]
 
     operations = [
@@ -20,18 +20,18 @@ class Migration(migrations.Migration):
                 ('promociones', models.CharField(max_length=80)),
                 ('categoria', models.CharField(max_length=80)),
                 ('precio', models.FloatField()),
-                ('evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.evento')),
+                ('evento', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.evento')),
             ],
         ),
         migrations.AlterField(
             model_name='inscritos',
             name='id_paquete',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.paquete'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.paquete'),
         ),
         migrations.AlterField(
             model_name='preinscritos',
             name='id_paquete',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='public.paquete'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='modulo.paquete'),
         ),
         migrations.DeleteModel(
             name='Paquetes',
