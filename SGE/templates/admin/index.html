@@ -33,22 +33,35 @@
                                 {% for model in app.models %}
                                     <tr>
                                         <td>
-                                            {% if model.url %}<a href="{{ model.url }}">{{ model.name }}</a>{% else %}{{ model.name }}{% endif %}
+                                            {% if model.url %}
+												{% if model.name == 'Usuarios' %}
+													<a href="{{ model.url }}">Personal</a>
+												{% elif model.name == 'Reportes' %}
+													<a href="{{ model.add_url }}">{{ model.name }}</a>
+												{% else %}
+													<a href="{{ model.url }}">{{ model.name }}</a>
+												{% endif %}
+											{% else %}{{ model.name }}{% endif %}
                                         </td>
                                         <td>
                                             <div class="btn-group float-right">
-                                                {% if model.add_url %}
-                                                    <a href="{{ model.add_url }}" class="btn btn-sm btn-success btn-flat addlink">{% trans 'Crear' %}</a>
+												{% if model.name == 'Usuarios' %}
+                                                    <a href="{{ model.add_url }}" class="btn btn-sm btn-outline-info btn-flat">{% trans 'Registrar' %}</a>
+                                                {% elif model.add_url %}
+                                                    <a href="{{ model.add_url }}" class="btn btn-sm btn-outline-info btn-flat">{% trans 'Crear' %}</a>
                                                 {% endif %}
-                                                {% if model.url %}
-                                                    {% if model.view_only %}
-                                                        <a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat viewlink">{% trans 'Visualizar' %}</a>
-                                                    {% else %}
-														<a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat viewlink">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Visualizar' %}{% endif %}</a>
-                                                        <a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat changelink">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Modificar' %}{% endif %}</a>
-														<a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat deletelink">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Cerrar' %}{% endif %}</a>
-                                                    {% endif %}
-                                                {% endif %}
+												
+												{% if model.name != 'Reportes' %} 
+													{% if model.url %}
+														{% if model.view_only %}
+															<a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat">{% trans 'Visualizar' %}</a>
+														{% else %}
+															<a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Visualizar' %}{% endif %}</a>
+															<a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Modificar' %}{% endif %}</a>
+															<a href="{{ model.url }}" class="btn btn-sm btn-outline-info btn-flat">{% if model.custom %}{% trans 'Go' %}{% else %}{% trans 'Borrar' %}{% endif %}</a>
+														{% endif %}
+													{% endif %}
+												{% else %}{% endif %}													
                                             </div>
                                         </td>
                                     </tr>

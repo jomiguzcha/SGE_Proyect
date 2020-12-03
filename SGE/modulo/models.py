@@ -75,9 +75,7 @@ class Paquete(models.Model):
     categoria = models.CharField(max_length = 80)#modificacion
     precio = models.FloatField()#modificacion
     evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
-    
-    def __str__(self):
-        return self.nombre
+
 
 #Diagrama de Clases DC031
 #<<Entidad>> Asistentes
@@ -168,6 +166,19 @@ class Asistencias(models.Model):
     asistio = models.BooleanField()
     id_sub_evento = models.ForeignKey(SubEvento, on_delete=models.CASCADE)"""
 
+class Tipos(models.Model):
+    tipos = models.CharField(max_length = 80)
+    
+    def __str__(self):
+        return self.tipos
+
+
+class Reporte(models.Model):
+    id = models.IntegerField(primary_key = True)
+    evento = models.ForeignKey(Evento, on_delete=models.CASCADE)
+    tipos = models.ForeignKey(Tipos, on_delete=models.CASCADE)
+
+
 #Diagrama de Clases DC042
 #<<Entidad>> Comite
 class Comite(models.Model):
@@ -176,7 +187,7 @@ class Comite(models.Model):
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     
     def __str__(self):
-        return self.nombre
+        return self.lista_personal
 
 #Diagrama de Clases DC039
 #<<Entidad>> Personal    
